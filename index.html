@@ -1,0 +1,56 @@
+<html ng-app="app">
+    <head>
+        <title>
+            Test One
+        </title>
+        <script src="js/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/directives.js"></script>
+        <script src="js/controllers.js"></script>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body ng-controller="mainCtrl">
+        <post title="Hello" author="Author"></post>
+        <br>
+        <div post title="World" author="Temporary"></div>
+        <!--<post title="Diljeet" author="Diljeet"></post>-->
+
+        <div>
+            <select ng-change="showP(temp)" ng-model="temp">
+                <option ng-value="one">One</option>
+                <option ng-value="two">Two</option>
+                <option ng-value="three">Three</option>
+            </select>
+        </div>
+
+        <section>
+            <div>
+                <label for="select-operation">Select Any Operation: </label>
+                <select name="select-operation" ng-model="operation" ng-change="clearFields()">
+                    <option>Select Any Value...</option>
+                    <option value="login">Login</option>
+                    <option value="signup">Signup</option>
+                    <option value="emailChange">Email Change</option>
+                </select>
+            </div>
+            <div ng-if="operation == 'login' || operation == 'signup'">
+                <input type="text" placeholder="Email" ng-model="user.email" value="{{user.email}}">
+                <input type="text" placeholder="Password" ng-model="user.password" value="{{user.password}}">
+            </div>
+            <div ng-if="operation == 'emailChange'">
+                <input type="text" placeholder="Old Email" ng-model="user.oldEmail" value="{{user.oldEmail}}">
+                <input type="text" placeholder="New Email" ng-model="user.newEmail" value="{{user.newEmail}}">
+            </div>
+            <div ng-hide="!operation || operation == 'Select Any Value...'">
+                <button ng-click="submit()">Submit</button>
+                <h4>{{status}}</h4>
+            </div>
+        </section>
+        <div id="testDivOne" ng-controller="testCtrlOne">
+        </div>
+        <div id="testDivTwo" ng-controller="testCtrlTwo">
+        </div>
+
+    </body>
+</html>
